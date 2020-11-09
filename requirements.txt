@@ -1,0 +1,6 @@
+pipenv==2018.11.26
+pluggy==0.13.1
+py==1.9.0
+pyparsing==2.4.7
+pytest==6.1.2
+selenium==3.141.0
