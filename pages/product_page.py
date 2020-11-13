@@ -22,13 +22,17 @@ class ProductPage(BasePage):
     def check_price_book_in_basket(self):
         # проверка что Стоимость корзины совпадает с ценой товара
         price = self.browser.find_element(*ProductPageLocators.PRICE_BOOK).text
+        print(price)
         price_in_basket = self.browser.find_element(*ProductPageLocators.MESSAGE_PRICE_BOOK).text
+        print(price_in_basket)
         assert price == price_in_basket, "ERROR! Different price"
 
     def check_name_book_in_basket(self):
         # проверка что Название товара в сообщении совпадает с добавленным
         name = self.browser.find_element(*ProductPageLocators.NAME_BOOK).text
+        print(name)
         name_in_basket = self.browser.find_element(*ProductPageLocators.MESSAGE_NAME_BOOK).text
+        print(name_in_basket)
         assert name in name_in_basket, "ERROR! Basket not contains this book"
 
     def check_message_about_basket(self):
