@@ -1,5 +1,4 @@
 import pytest
-
 from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 import time
@@ -15,5 +14,39 @@ def test_guest_can_add_product_to_basket(browser, part):
     product_page.should_be_add_basket_button()
     product_page.add_to_basket()
     product_page.add_result()
-    time.sleep(2)
+    #time.sleep(2)
     product_page.check_result_messages()
+
+
+@pytest.mark.xfail
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+    page = MainPage(browser, link)
+    page.open()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.should_be_add_basket_button()
+    product_page.add_to_basket()
+    product_page.should_not_be_success_message()
+
+
+def test_guest_cant_see_success_message(browser):
+    # ждёт 4 сек и проверяет что элемент не появился на странице
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+    page = MainPage(browser, link)
+    page.open()
+    product_page = ProductPage(browser, browser.current_url)
+    #product_page.should_be_add_basket_button()
+    product_page.should_not_be_success_message()
+
+
+@pytest.mark.xfail
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    # ждёт 4 сек что элемент исчезнет со страницы
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+    page = MainPage(browser, link)
+    page.open()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.should_be_add_basket_button()
+    product_page.add_to_basket()
+    product_page.should_be_disappeared_success_message()
+

@@ -37,4 +37,14 @@ class ProductPage(BasePage):
 
     def check_message_about_basket(self):
         # проверка наличия сообщения что товары добавлены в корзину
-        assert self.is_element_present(*ProductPageLocators.TEXT_MESSAGE), "ERROR! Message is not presented"
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_NAME_BOOK), "ERROR! Message is not presented"
+
+    def should_not_be_success_message(self):
+        # элемент не появляется на странице в течение заданного времени
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_NAME_BOOK), \
+            "Success message is presented, but should not be"
+
+    def should_be_disappeared_success_message(self):
+        # элемент не появляется на странице в течение заданного времени
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_NAME_BOOK), \
+            "Success message must disappeared, but not disappeared"
