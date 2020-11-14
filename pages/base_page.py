@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+from .locators import BasePageLocators
 
 
 class BasePage():
@@ -15,6 +16,15 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    # передаём два аргумента: как искать (css, id, xpath и тд) и что искать (строку-селектор)
+    # символ *, указывает на то, что мы передали именно пару, и этот кортеж нужно распаковать.
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
     # перехватываем исключение
     # передаём два аргумента: как искать (css, id, xpath и тд) и что искать (строку-селектор)

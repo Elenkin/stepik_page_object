@@ -25,3 +25,8 @@ class ProductPageLocators():
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert")
     MESSAGE_NAME_BOOK = (By.CSS_SELECTOR, "#messages > :nth-child(1) strong")
     MESSAGE_PRICE_BOOK = (By.CSS_SELECTOR, "#messages > :nth-child(3) strong")
+
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
