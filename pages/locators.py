@@ -25,8 +25,11 @@ class ProductPageLocators():
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert")
     MESSAGE_NAME_BOOK = (By.CSS_SELECTOR, "#messages > :nth-child(1) strong")
     MESSAGE_PRICE_BOOK = (By.CSS_SELECTOR, "#messages > :nth-child(3) strong")
+    EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    BASKET_ITEMS = (By.CSS_SELECTOR, "#basket_formset .basket-items")
 
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    OPEN_BASKET_BUTTON = (By.CSS_SELECTOR, ".btn-group a.btn-default")

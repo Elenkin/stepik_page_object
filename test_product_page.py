@@ -1,4 +1,6 @@
 import pytest
+
+from .pages.basket_page import BasketPage
 from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 import time
@@ -14,7 +16,6 @@ def test_guest_can_add_product_to_basket(browser, part):
     product_page.should_be_add_basket_button()
     product_page.add_to_basket()
     product_page.add_result()
-    #time.sleep(2)
     product_page.check_result_messages()
 
 
@@ -35,7 +36,6 @@ def test_guest_cant_see_success_message(browser):
     page = MainPage(browser, link)
     page.open()
     product_page = ProductPage(browser, browser.current_url)
-    #product_page.should_be_add_basket_button()
     product_page.should_not_be_success_message()
 
 
@@ -63,3 +63,15 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    # переход в корзину со страницы товара
+    # и проверка что в корзине нет товаров и есть сообщение что корзина пуста
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.open_basket()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_be_not_items_in_basket()
+    basket_page.should_be_text_about_empty_basket()

@@ -45,6 +45,6 @@ class ProductPage(BasePage):
             "Success message is presented, but should not be"
 
     def should_be_disappeared_success_message(self):
-        # элемент не появляется на странице в течение заданного времени
+        # элемент должен исчезнуть в течение заданного времени
         assert self.is_disappeared(*ProductPageLocators.MESSAGE_NAME_BOOK), \
             "Success message must disappeared, but not disappeared"
