@@ -20,6 +20,7 @@ class TestUserAddToBasketFromProductPage():
         base_page = BasePage(browser, browser.current_url)
         base_page.should_be_authorized_user()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = f"http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
         page = MainPage(browser, link)
@@ -38,6 +39,7 @@ class TestUserAddToBasketFromProductPage():
         product_page.should_not_be_success_message()
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('part', ["offer0", "offer1", "offer2", "offer3", "offer4", "offer5", "offer6",
                                   pytest.param("offer7", marks=pytest.mark.xfail), "offer8", "offer9"])
 def test_guest_can_add_product_to_basket(browser, part):
@@ -90,6 +92,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -97,6 +100,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     # переход в корзину со страницы товара
     # и проверка что в корзине нет товаров и есть сообщение что корзина пуста
